@@ -1,9 +1,9 @@
 bits 16
-org 0x100
+org 0x8000
 
 main:
-	mov ax, 0x0013
-	int 0x10
+	mov ax, 0013h
+	int 10h
 
 	call d_backg
 
@@ -18,11 +18,13 @@ main:
 	push 25
 	call dsphere
 
-	mov ax, 0x0100
-	int 21h
+.exit:
+    hlt
+    jmp .exit
 
-	mov ax, 0x4c00
-	int 21h
+exit:
+	hlt
+	jmp exit
 
 ;drect(x, y, w, h)
 drect:
@@ -142,22 +144,3 @@ dsphere:
 	pop di
 	pop bp
 	ret 6
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
